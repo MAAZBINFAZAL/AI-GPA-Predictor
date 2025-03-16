@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CGPA Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+        .logo {
+            display: block;
+            margin: 0 auto 10px auto;
+            width: 150px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Department Logo" class="logo">
+        <div class="container">
+        <h1>Artificial Intelligence Lab</h1>
+        <h2>Electronics Department, Islamia University of Bahawalpur</h2>
+        <p>Punjab, Pakistan</p>
+        <address>
+            Complex Engineering Problem<br>
+        </address>
+    </div>
+       <h1>Department of Electronic Engineering CGPA predictor system</h1>
+<small>(An AI-Based Tool for Academic Performance Estimation)</small>
+
+        <form action="/" method="post">
+            <!-- Input fields for all features -->
+            <label for="matriculation_marks">Matriculation Marks (Total: 1100):</label>
+            <input type="number" id="matriculation_marks" name="matriculation_marks" step="0.01" placeholder="Enter out of 1100" required>
+            <label for="intermediate_marks">Intermediate Marks (Total: 1100):</label>
+            <input type="number" id="intermediate_marks" name="intermediate_marks" step="0.01" placeholder="Enter out of 1100" required>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" placeholder="Enter age" required>
+            <label for="sex">Sex:</label>
+            <select id="sex" name="sex" required>
+                <option value="0">Female</option>
+                <option value="1">Male</option>
+            </select>
+            <label for="attendance">Attendance (%):</label>
+            <input type="number" id="attendance" name="attendance" step="0.01" placeholder="Enter percentage" required>
+            <label for="study_hours">Study Hours:</label>
+            <input type="number" id="study_hours" name="study_hours" step="0.01" placeholder="Enter hours per week" required>
+            <label for="extracurricular_activities">Extracurricular Activities:</label>
+            <input type="number" id="extracurricular_activities" name="extracurricular_activities" placeholder="Enter number of activities" required>
+            <label for="socioeconomic_status">Socioeconomic Status:</label>
+            <input type="number" id="socioeconomic_status" name="socioeconomic_status" placeholder="Enter socioeconomic status[Scale from 1 to 5]" required>
+            <label for="parental_education">Parental Education:</label>
+            <select id="parental_education" name="parental_education" required>
+                <option value="0">None</option>
+                <option value="1">High School</option>
+                <option value="2">College</option>
+            </select>
+            <label for="entrance_exam_scores">Entrance Exam Scores:</label>
+            <input type="number" id="entrance_exam_scores" name="entrance_exam_scores" placeholder="Enter scores on a scale of 200 to 800" required>
+            <label for="previous_semester_grades">Previous Semester Grades:</label>
+            <input type="number" id="previous_semester_grades" name="previous_semester_grades" step="0.01" placeholder="Enter GPA on a 4.0 scale" required>
+            <label for="course_load">Course Load:</label>
+            <input type="number" id="course_load" name="course_load" placeholder="Enter number of courses" required>
+            <label for="class_participation">Class Participation:</label>
+            <input type="number" id="class_participation" name="class_participation" placeholder="Enter participation score[Scale from 0 to 10]" required>
+            <label for="sleep_patterns">Sleep Patterns:</label>
+            <input type="number" id="sleep_patterns" name="sleep_patterns" step="0.01" placeholder="Enter hours per night" required>
+            <label for="health">Health:</label>
+            <input type="number" id="health" name="health" placeholder="Enter health status[Scale from 1 to 4]" required>
+            <label for="access_to_resources">Access to Resources:</label>
+            <input type="number" id="access_to_resources" name="access_to_resources" placeholder="Enter access to resources[Scale from 1 to 4]" required>
+            <label for="mentorship_or_tutoring">Mentorship or Tutoring:</label>
+            <select id="mentorship_or_tutoring" name="mentorship_or_tutoring" required>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+            <input type="submit" value="Predict CGPA">
+        </form>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        {% if predicted_cgpa is not none %}
+            <h2>Predicted CGPA: {{ predicted_cgpa }}</h2>
+        {% endif %}
+    </div>
+</body>
+</html>
