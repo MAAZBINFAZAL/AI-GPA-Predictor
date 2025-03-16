@@ -1,5 +1,4 @@
 attrs==20.3.0
-aws-cfn-bootstrap==2.0
 awscli==2.17.18
 awscrt==0.19.19
 Babel==2.9.1
